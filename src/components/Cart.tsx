@@ -20,8 +20,17 @@ const Cart: React.FC<CartProps> = ({ cartItems, updateQuantity, removeFromCart }
 
   const total = cartItems.reduce((sum, item) => sum + (item.price * item.quantity), 0);
 
+  const formatPrice = (price: number) => {
+    return new Intl.NumberFormat('en-IN', {
+      style: 'currency',
+      currency: 'INR',
+      minimumFractionDigits: 0,
+      maximumFractionDigits: 0,
+    }).format(price);
+  };
+
   const handleCheckout = () => {
-    alert("Checkout functionality coming soon!");
+    navigate('/checkout');
   };
 
   const handleContinueShopping = () => {
@@ -31,13 +40,20 @@ const Cart: React.FC<CartProps> = ({ cartItems, updateQuantity, removeFromCart }
   if (cartItems.length === 0) {
     return (
       <div className="min-h-screen bg-[#F9FAFB]">
-        <header className="bg-white shadow-sm">
+        <header className="bg-white shadow-lg border-b border-[#E5E7EB]">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="flex justify-between items-center py-4">
-              <h1 className="text-2xl font-bold text-[#111827]">Shopping Cart</h1>
+            <div className="flex justify-between items-center py-6">
+              <div className="flex items-center space-x-4">
+                <div className="w-10 h-10 bg-gradient-to-r from-[#4F46E5] to-[#2563EB] rounded-lg flex items-center justify-center">
+                  <span className="text-white font-bold text-xl">🛒</span>
+                </div>
+                <h1 className="text-3xl font-bold bg-gradient-to-r from-[#111827] to-[#4F46E5] bg-clip-text text-transparent">
+                  Shopping Cart
+                </h1>
+              </div>
               <button
                 onClick={() => navigate('/products')}
-                className="px-4 py-2 bg-[#4F46E5] text-white rounded hover:bg-[#2563EB] transition"
+                className="px-6 py-3 bg-gradient-to-r from-[#4F46E5] to-[#2563EB] text-white rounded-lg hover:from-[#2563EB] hover:to-[#1D4ED8] transition-all duration-200 shadow-md hover:shadow-lg"
               >
                 Continue Shopping
               </button>
@@ -45,14 +61,16 @@ const Cart: React.FC<CartProps> = ({ cartItems, updateQuantity, removeFromCart }
           </div>
         </header>
 
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
           <div className="text-center">
-            <div className="text-6xl mb-4">🛒</div>
-            <h2 className="text-2xl font-bold text-[#111827] mb-2">Your cart is empty</h2>
-            <p className="text-[#6B7280] mb-6">Looks like you haven't added any products to your cart yet.</p>
+            <div className="w-32 h-32 mx-auto mb-8 bg-gradient-to-r from-[#F3F4F6] to-[#E5E7EB] rounded-full flex items-center justify-center">
+              <span className="text-6xl">🛒</span>
+            </div>
+            <h2 className="text-3xl font-bold text-[#111827] mb-4">Your cart is empty</h2>
+            <p className="text-[#6B7280] text-lg mb-8 max-w-md mx-auto">Looks like you haven't added any products to your cart yet. Start exploring our amazing collection!</p>
             <button
               onClick={handleContinueShopping}
-              className="px-6 py-3 bg-[#4F46E5] text-white rounded-lg hover:bg-[#2563EB] transition"
+              className="px-8 py-4 bg-gradient-to-r from-[#4F46E5] to-[#2563EB] text-white rounded-lg hover:from-[#2563EB] hover:to-[#1D4ED8] transition-all duration-200 font-semibold text-lg shadow-md hover:shadow-lg"
             >
               Start Shopping
             </button>
@@ -64,13 +82,20 @@ const Cart: React.FC<CartProps> = ({ cartItems, updateQuantity, removeFromCart }
 
   return (
     <div className="min-h-screen bg-[#F9FAFB]">
-      <header className="bg-white shadow-sm">
+      <header className="bg-white shadow-lg border-b border-[#E5E7EB]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center py-4">
-            <h1 className="text-2xl font-bold text-[#111827]">Shopping Cart</h1>
+          <div className="flex justify-between items-center py-6">
+            <div className="flex items-center space-x-4">
+              <div className="w-10 h-10 bg-gradient-to-r from-[#4F46E5] to-[#2563EB] rounded-lg flex items-center justify-center">
+                <span className="text-white font-bold text-xl">🛒</span>
+              </div>
+              <h1 className="text-3xl font-bold bg-gradient-to-r from-[#111827] to-[#4F46E5] bg-clip-text text-transparent">
+                Shopping Cart
+              </h1>
+            </div>
             <button
               onClick={() => navigate('/products')}
-              className="px-4 py-2 bg-[#4F46E5] text-white rounded hover:bg-[#2563EB] transition"
+              className="px-6 py-3 bg-gradient-to-r from-[#4F46E5] to-[#2563EB] text-white rounded-lg hover:from-[#2563EB] hover:to-[#1D4ED8] transition-all duration-200 shadow-md hover:shadow-lg"
             >
               Continue Shopping
             </button>
@@ -82,38 +107,38 @@ const Cart: React.FC<CartProps> = ({ cartItems, updateQuantity, removeFromCart }
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {/* Cart Items */}
           <div className="lg:col-span-2">
-            <div className="bg-white rounded-lg shadow-md">
+            <div className="bg-white rounded-xl shadow-lg">
               <div className="p-6">
-                <h2 className="text-xl font-semibold text-[#111827] mb-4">Cart Items ({cartItems.length})</h2>
+                <h2 className="text-xl font-semibold text-[#111827] mb-6">Cart Items ({cartItems.length})</h2>
                 <div className="space-y-4">
                   {cartItems.map((item) => (
-                    <div key={item.id} className="flex items-center space-x-4 p-4 border border-[#E5E7EB] rounded-lg">
+                    <div key={item.id} className="flex items-center space-x-4 p-6 border border-[#E5E7EB] rounded-xl hover:shadow-md transition-all duration-200">
                       <img
                         src={item.image}
                         alt={item.name}
-                        className="w-20 h-20 object-cover rounded"
+                        className="w-24 h-24 object-cover rounded-lg"
                       />
                       <div className="flex-1">
                         <h3 className="font-semibold text-[#111827]">{item.name}</h3>
-                        <p className="text-[#10B981] font-bold">${item.price}</p>
+                        <p className="text-[#10B981] font-bold">{formatPrice(item.price)}</p>
                       </div>
                       <div className="flex items-center space-x-2">
                         <button
                           onClick={() => updateQuantity(item.id, Math.max(0, item.quantity - 1))}
-                          className="w-8 h-8 bg-[#E5E7EB] text-[#111827] rounded hover:bg-[#D1D5DB] transition"
+                          className="w-10 h-10 bg-[#E5E7EB] text-[#111827] rounded-lg hover:bg-[#D1D5DB] transition-colors duration-200 font-bold"
                         >
                           -
                         </button>
-                        <span className="w-12 text-center font-semibold text-[#111827]">{item.quantity}</span>
+                        <span className="w-16 text-center font-semibold text-[#111827] text-lg">{item.quantity}</span>
                         <button
                           onClick={() => updateQuantity(item.id, item.quantity + 1)}
-                          className="w-8 h-8 bg-[#E5E7EB] text-[#111827] rounded hover:bg-[#D1D5DB] transition"
+                          className="w-10 h-10 bg-[#E5E7EB] text-[#111827] rounded-lg hover:bg-[#D1D5DB] transition-colors duration-200 font-bold"
                         >
                           +
                         </button>
                       </div>
                       <div className="text-right">
-                        <p className="font-semibold text-[#111827]">${(item.price * item.quantity).toFixed(2)}</p>
+                        <p className="font-semibold text-[#111827]">{formatPrice(item.price * item.quantity)}</p>
                         <button
                           onClick={() => removeFromCart(item.id)}
                           className="text-[#F43F5E] hover:text-[#E11D48] text-sm transition"
@@ -130,12 +155,12 @@ const Cart: React.FC<CartProps> = ({ cartItems, updateQuantity, removeFromCart }
 
           {/* Order Summary */}
           <div className="lg:col-span-1">
-            <div className="bg-white rounded-lg shadow-md p-6 sticky top-6">
+            <div className="bg-white rounded-xl shadow-lg p-6 sticky top-6">
               <h2 className="text-xl font-semibold text-[#111827] mb-4">Order Summary</h2>
               <div className="space-y-3">
                 <div className="flex justify-between">
                   <span className="text-[#6B7280]">Subtotal ({cartItems.reduce((sum, item) => sum + item.quantity, 0)} items)</span>
-                  <span className="font-semibold text-[#111827]">${total.toFixed(2)}</span>
+                  <span className="font-semibold text-[#111827]">{formatPrice(total)}</span>
                 </div>
                 <div className="flex justify-between">
                   <span className="text-[#6B7280]">Shipping</span>
@@ -144,13 +169,13 @@ const Cart: React.FC<CartProps> = ({ cartItems, updateQuantity, removeFromCart }
                 <div className="border-t border-[#E5E7EB] pt-3">
                   <div className="flex justify-between">
                     <span className="text-lg font-bold text-[#111827]">Total</span>
-                    <span className="text-lg font-bold text-[#10B981]">${total.toFixed(2)}</span>
+                    <span className="text-lg font-bold text-[#10B981]">{formatPrice(total)}</span>
                   </div>
                 </div>
               </div>
               <button
                 onClick={handleCheckout}
-                className="w-full mt-6 py-3 bg-[#4F46E5] text-white rounded-lg hover:bg-[#2563EB] transition font-semibold"
+                className="w-full mt-6 py-4 bg-gradient-to-r from-[#4F46E5] to-[#2563EB] text-white rounded-lg hover:from-[#2563EB] hover:to-[#1D4ED8] transition-all duration-200 font-semibold text-lg shadow-md hover:shadow-lg"
               >
                 Proceed to Checkout
               </button>
