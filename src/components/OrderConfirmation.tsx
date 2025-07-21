@@ -167,7 +167,7 @@ const OrderConfirmation: React.FC = () => {
               onClick={handleContinueShopping}
               className="px-8 py-3 bg-[#4F46E5] text-white rounded-lg hover:bg-[#2563EB] transition font-semibold"
             >
-              Continue Shopping
+              Continue Shopping at S Cart
             </button>
           </div>
         </div>

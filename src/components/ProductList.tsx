@@ -144,20 +144,21 @@ const ProductList: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[#F9FAFB]">
+    <div className="min-h-screen w-full bg-[#F9FAFB]">
       {/* Header */}
       <header className="bg-white shadow-lg border-b border-[#E5E7EB]">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="w-full px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center py-6">
             <div className="flex items-center space-x-4">
-              <div className="w-10 h-10 bg-gradient-to-r from-[#4F46E5] to-[#2563EB] rounded-lg flex items-center justify-center">
-                <span className="text-white font-bold text-xl">🛍️</span>
+              <div className="w-12 h-12 bg-gradient-to-r from-[#4F46E5] to-[#2563EB] rounded-lg flex items-center justify-center">
+                <img 
+                  src="/Bold Minimalist Logo for S Cart with Movement.svg" 
+                  alt="S Cart Logo" 
+                  className="w-8 h-8"
+                />
               </div>
-              <h1 className="text-3xl font-bold bg-gradient-to-r from-[#111827] to-[#4F46E5] bg-clip-text text-transparent">
-                E-Commerce Store
-              </h1>
             </div>
-            <div className="flex items-center space-x-4">
+                        <div className="flex items-center space-x-4">
               <button
                 onClick={() => navigate('/cart')}
                 className="relative px-6 py-3 bg-gradient-to-r from-[#4F46E5] to-[#2563EB] text-white rounded-lg hover:from-[#2563EB] hover:to-[#1D4ED8] transition-all duration-200 shadow-md hover:shadow-lg"
@@ -180,8 +181,12 @@ const ProductList: React.FC = () => {
         </div>
       </header>
 
+
+
+
+
       {/* Search and Filter Section */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <div className="w-full px-4 sm:px-6 lg:px-8 py-8">
         <div className="bg-white rounded-xl shadow-lg p-6 mb-8">
           <h2 className="text-2xl font-bold text-[#111827] mb-6 text-center">Discover Amazing Products</h2>
           <div className="flex flex-col sm:flex-row gap-4">
@@ -199,17 +204,24 @@ const ProductList: React.FC = () => {
                 className="w-full pl-10 pr-4 py-3 border border-[#E5E7EB] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#4F46E5] focus:border-[#4F46E5] transition-all duration-200"
               />
             </div>
-            <select
-              value={selectedCategory}
-              onChange={(e) => setSelectedCategory(e.target.value)}
-              className="px-4 py-3 border border-[#E5E7EB] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#4F46E5] focus:border-[#4F46E5] transition-all duration-200 bg-white"
-            >
-              {categories.map(category => (
-                <option key={category} value={category}>
-                  {category.charAt(0).toUpperCase() + category.slice(1)}
-                </option>
-              ))}
-            </select>
+            <div className="relative">
+              <select
+                value={selectedCategory}
+                onChange={(e) => setSelectedCategory(e.target.value)}
+                className="appearance-none px-4 py-3 pr-10 border border-[#E5E7EB] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#4F46E5] focus:border-[#4F46E5] transition-all duration-200 bg-white text-[#111827] font-medium cursor-pointer hover:border-[#4F46E5]"
+              >
+                {categories.map(category => (
+                  <option key={category} value={category} className="py-2">
+                    {category.charAt(0).toUpperCase() + category.slice(1)}
+                  </option>
+                ))}
+              </select>
+              <div className="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
+                <svg className="h-5 w-5 text-[#6B7280]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                </svg>
+              </div>
+            </div>
           </div>
           {filteredProducts.length > 0 && (
             <p className="text-[#6B7280] text-sm mt-4 text-center">

@@ -31,6 +31,10 @@ const Checkout: React.FC = () => {
 
   const total = cartItems.reduce((sum, item) => sum + (item.price * item.quantity), 0);
 
+  const formatPrice = (price: number) => {
+    return `₹${price.toLocaleString('en-IN')}`;
+  };
+
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setFormData(prev => ({
@@ -56,20 +60,29 @@ const Checkout: React.FC = () => {
     return (
       <div className="min-h-screen bg-[#F9FAFB]">
         <header className="bg-white shadow-sm">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="w-full px-4 sm:px-6 lg:px-8">
             <div className="flex justify-between items-center py-4">
-              <h1 className="text-2xl font-bold text-[#111827]">Checkout</h1>
+              <div className="flex items-center space-x-4">
+                <div className="w-12 h-12 bg-gradient-to-r from-[#4F46E5] to-[#2563EB] rounded-lg flex items-center justify-center">
+                  <img
+                    src="/Bold Minimalist Logo for S Cart with Movement.svg"
+                    alt="S Cart Logo"
+                    className="w-8 h-8"
+                  />
+                </div>
+                <h1 className="text-2xl font-bold text-[#111827]">Checkout</h1>
+              </div>
               <button
                 onClick={() => navigate('/products')}
                 className="px-4 py-2 bg-[#4F46E5] text-white rounded hover:bg-[#2563EB] transition"
               >
-                Continue Shopping
+                Continue Shopping at S Cart
               </button>
             </div>
           </div>
         </header>
 
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div className="w-full px-4 sm:px-6 lg:px-8 py-12">
           <div className="text-center">
             <div className="text-6xl mb-4">🛒</div>
             <h2 className="text-2xl font-bold text-[#111827] mb-2">Your cart is empty</h2>
@@ -78,7 +91,7 @@ const Checkout: React.FC = () => {
               onClick={() => navigate('/products')}
               className="px-6 py-3 bg-[#4F46E5] text-white rounded-lg hover:bg-[#2563EB] transition"
             >
-              Start Shopping
+              Start Shopping at S Cart
             </button>
           </div>
         </div>
@@ -89,9 +102,18 @@ const Checkout: React.FC = () => {
   return (
     <div className="min-h-screen bg-[#F9FAFB]">
       <header className="bg-white shadow-sm">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="w-full px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center py-4">
-            <h1 className="text-2xl font-bold text-[#111827]">Checkout</h1>
+            <div className="flex items-center space-x-4">
+              <div className="w-12 h-12 bg-gradient-to-r from-[#4F46E5] to-[#2563EB] rounded-lg flex items-center justify-center">
+                <img
+                  src="/Bold Minimalist Logo for S Cart with Movement.svg"
+                  alt="S Cart Logo"
+                  className="w-8 h-8"
+                />
+              </div>
+              <h1 className="text-2xl font-bold text-[#111827]">Checkout</h1>
+            </div>
             <button
               onClick={() => navigate('/cart')}
               className="px-4 py-2 bg-[#6B7280] text-white rounded hover:bg-[#4B5563] transition"
@@ -102,7 +124,7 @@ const Checkout: React.FC = () => {
         </div>
       </header>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+      <div className="w-full px-4 sm:px-6 lg:px-8 py-6">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {/* Checkout Form */}
           <div className="lg:col-span-2">
@@ -260,13 +282,13 @@ const Checkout: React.FC = () => {
                       <p className="font-medium text-[#111827]">{item.name}</p>
                       <p className="text-[#6B7280] text-sm">Qty: {item.quantity}</p>
                     </div>
-                    <span className="font-semibold text-[#111827]">${(item.price * item.quantity).toFixed(2)}</span>
+                    <span className="font-semibold text-[#111827]">{formatPrice(item.price * item.quantity)}</span>
                   </div>
                 ))}
                 <div className="border-t border-[#E5E7EB] pt-3">
                   <div className="flex justify-between">
                     <span className="text-[#6B7280]">Subtotal</span>
-                    <span className="font-semibold text-[#111827]">${total.toFixed(2)}</span>
+                    <span className="font-semibold text-[#111827]">{formatPrice(total)}</span>
                   </div>
                   <div className="flex justify-between">
                     <span className="text-[#6B7280]">Shipping</span>
@@ -275,7 +297,7 @@ const Checkout: React.FC = () => {
                   <div className="border-t border-[#E5E7EB] pt-3">
                     <div className="flex justify-between">
                       <span className="text-lg font-bold text-[#111827]">Total</span>
-                      <span className="text-lg font-bold text-[#10B981]">${total.toFixed(2)}</span>
+                      <span className="text-lg font-bold text-[#10B981]">{formatPrice(total)}</span>
                     </div>
                   </div>
                 </div>

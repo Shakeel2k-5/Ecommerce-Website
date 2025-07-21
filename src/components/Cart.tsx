@@ -21,12 +21,7 @@ const Cart: React.FC<CartProps> = ({ cartItems, updateQuantity, removeFromCart }
   const total = cartItems.reduce((sum, item) => sum + (item.price * item.quantity), 0);
 
   const formatPrice = (price: number) => {
-    return new Intl.NumberFormat('en-IN', {
-      style: 'currency',
-      currency: 'INR',
-      minimumFractionDigits: 0,
-      maximumFractionDigits: 0,
-    }).format(price);
+    return `₹${price.toLocaleString('en-IN')}`;
   };
 
   const handleCheckout = () => {
@@ -39,17 +34,18 @@ const Cart: React.FC<CartProps> = ({ cartItems, updateQuantity, removeFromCart }
 
   if (cartItems.length === 0) {
     return (
-      <div className="min-h-screen bg-[#F9FAFB]">
+      <div className="min-h-screen w-full bg-[#F9FAFB]">
         <header className="bg-white shadow-lg border-b border-[#E5E7EB]">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="w-full px-4 sm:px-6 lg:px-8">
             <div className="flex justify-between items-center py-6">
               <div className="flex items-center space-x-4">
-                <div className="w-10 h-10 bg-gradient-to-r from-[#4F46E5] to-[#2563EB] rounded-lg flex items-center justify-center">
-                  <span className="text-white font-bold text-xl">🛒</span>
+                <div className="w-12 h-12 bg-gradient-to-r from-[#4F46E5] to-[#2563EB] rounded-lg flex items-center justify-center">
+                  <img 
+                    src="/Bold Minimalist Logo for S Cart with Movement.svg" 
+                    alt="S Cart Logo" 
+                    className="w-8 h-8"
+                  />
                 </div>
-                <h1 className="text-3xl font-bold bg-gradient-to-r from-[#111827] to-[#4F46E5] bg-clip-text text-transparent">
-                  Shopping Cart
-                </h1>
               </div>
               <button
                 onClick={() => navigate('/products')}
@@ -61,7 +57,7 @@ const Cart: React.FC<CartProps> = ({ cartItems, updateQuantity, removeFromCart }
           </div>
         </header>
 
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div className="w-full px-4 sm:px-6 lg:px-8 py-16">
           <div className="text-center">
             <div className="w-32 h-32 mx-auto mb-8 bg-gradient-to-r from-[#F3F4F6] to-[#E5E7EB] rounded-full flex items-center justify-center">
               <span className="text-6xl">🛒</span>
@@ -72,7 +68,7 @@ const Cart: React.FC<CartProps> = ({ cartItems, updateQuantity, removeFromCart }
               onClick={handleContinueShopping}
               className="px-8 py-4 bg-gradient-to-r from-[#4F46E5] to-[#2563EB] text-white rounded-lg hover:from-[#2563EB] hover:to-[#1D4ED8] transition-all duration-200 font-semibold text-lg shadow-md hover:shadow-lg"
             >
-              Start Shopping
+              Start Shopping at S Cart
             </button>
           </div>
         </div>
@@ -81,17 +77,18 @@ const Cart: React.FC<CartProps> = ({ cartItems, updateQuantity, removeFromCart }
   }
 
   return (
-    <div className="min-h-screen bg-[#F9FAFB]">
+    <div className="min-h-screen w-full bg-[#F9FAFB]">
       <header className="bg-white shadow-lg border-b border-[#E5E7EB]">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="w-full px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center py-6">
             <div className="flex items-center space-x-4">
-              <div className="w-10 h-10 bg-gradient-to-r from-[#4F46E5] to-[#2563EB] rounded-lg flex items-center justify-center">
-                <span className="text-white font-bold text-xl">🛒</span>
+              <div className="w-12 h-12 bg-gradient-to-r from-[#4F46E5] to-[#2563EB] rounded-lg flex items-center justify-center">
+                <img 
+                  src="/Bold Minimalist Logo for S Cart with Movement.svg" 
+                  alt="S Cart Logo" 
+                  className="w-8 h-8"
+                />
               </div>
-              <h1 className="text-3xl font-bold bg-gradient-to-r from-[#111827] to-[#4F46E5] bg-clip-text text-transparent">
-                Shopping Cart
-              </h1>
             </div>
             <button
               onClick={() => navigate('/products')}
@@ -103,7 +100,7 @@ const Cart: React.FC<CartProps> = ({ cartItems, updateQuantity, removeFromCart }
         </div>
       </header>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+      <div className="w-full px-4 sm:px-6 lg:px-8 py-6">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {/* Cart Items */}
           <div className="lg:col-span-2">
@@ -155,20 +152,20 @@ const Cart: React.FC<CartProps> = ({ cartItems, updateQuantity, removeFromCart }
 
           {/* Order Summary */}
           <div className="lg:col-span-1">
-            <div className="bg-white rounded-xl shadow-lg p-6 sticky top-6">
-              <h2 className="text-xl font-semibold text-[#111827] mb-4">Order Summary</h2>
+            <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 sticky top-6">
+              <h2 className="text-xl font-semibold text-[#111827] dark:text-white mb-4">Order Summary</h2>
               <div className="space-y-3">
                 <div className="flex justify-between">
-                  <span className="text-[#6B7280]">Subtotal ({cartItems.reduce((sum, item) => sum + item.quantity, 0)} items)</span>
-                  <span className="font-semibold text-[#111827]">{formatPrice(total)}</span>
+                  <span className="text-[#6B7280] dark:text-gray-400">Subtotal ({cartItems.reduce((sum, item) => sum + item.quantity, 0)} items)</span>
+                  <span className="font-semibold text-[#111827] dark:text-white">{formatPrice(total)}</span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-[#6B7280]">Shipping</span>
-                  <span className="font-semibold text-[#111827]">Free</span>
+                  <span className="text-[#6B7280] dark:text-gray-400">Shipping</span>
+                  <span className="font-semibold text-[#111827] dark:text-white">Free</span>
                 </div>
-                <div className="border-t border-[#E5E7EB] pt-3">
+                <div className="border-t border-[#E5E7EB] dark:border-gray-600 pt-3">
                   <div className="flex justify-between">
-                    <span className="text-lg font-bold text-[#111827]">Total</span>
+                    <span className="text-lg font-bold text-[#111827] dark:text-white">Total</span>
                     <span className="text-lg font-bold text-[#10B981]">{formatPrice(total)}</span>
                   </div>
                 </div>
