@@ -2,23 +2,14 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useCart } from "../context/CartContext";
 
-interface Product {
-  id: number;
-  name: string;
-  price: number;
-  image: string;
-  description: string;
-  category: string;
-}
-
-const ProductList: React.FC = () => {
+const ProductList = () => {
   const navigate = useNavigate();
   const { addToCart, cartCount } = useCart();
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("all");
 
   // Enhanced product data with rupee pricing
-  const products: Product[] = [
+  const products = [
     {
       id: 1,
       name: "Sony WH-1000XM4 Wireless Headphones",
@@ -119,7 +110,7 @@ const ProductList: React.FC = () => {
 
   const categories = ["all", "electronics", "sports", "home"];
 
-  const formatPrice = (price: number) => {
+  const formatPrice = (price) => {
     return new Intl.NumberFormat('en-IN', {
       style: 'currency',
       currency: 'INR',
@@ -135,7 +126,7 @@ const ProductList: React.FC = () => {
     return matchesSearch && matchesCategory;
   });
 
-  const handleAddToCart = (product: Product) => {
+  const handleAddToCart = (product) => {
     addToCart(product);
   };
 

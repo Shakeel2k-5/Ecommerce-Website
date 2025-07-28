@@ -2,27 +2,15 @@ import React, { useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useCart } from "../context/CartContext";
 
-interface Product {
-  id: number;
-  name: string;
-  price: number;
-  image: string;
-  description: string;
-  category: string;
-  features?: string[];
-  specifications?: { [key: string]: string };
-  images?: string[];
-}
-
-const ProductDetail: React.FC = () => {
-  const { id } = useParams<{ id: string }>();
+const ProductDetail = () => {
+  const { id } = useParams();
   const navigate = useNavigate();
   const { addToCart, clearCart, cartCount } = useCart();
   const [selectedImage, setSelectedImage] = useState(0);
   const [quantity, setQuantity] = useState(1);
 
   // Enhanced product data with more details
-  const products: Product[] = [
+  const products = [
     {
       id: 1,
       name: "Sony WH-1000XM4 Wireless Headphones",
@@ -283,7 +271,7 @@ const ProductDetail: React.FC = () => {
     navigate('/checkout');
   };
 
-  const formatPrice = (price: number) => {
+  const formatPrice = (price) => {
     return new Intl.NumberFormat('en-IN', {
       style: 'currency',
       currency: 'INR',

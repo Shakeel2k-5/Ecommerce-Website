@@ -1,26 +1,12 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
-interface CartItem {
-  id: number;
-  name: string;
-  price: number;
-  image: string;
-  quantity: number;
-}
-
-interface CartProps {
-  cartItems: CartItem[];
-  updateQuantity: (id: number, quantity: number) => void;
-  removeFromCart: (id: number) => void;
-}
-
-const Cart: React.FC<CartProps> = ({ cartItems, updateQuantity, removeFromCart }) => {
+const Cart = ({ cartItems, updateQuantity, removeFromCart }) => {
   const navigate = useNavigate();
 
   const total = cartItems.reduce((sum, item) => sum + (item.price * item.quantity), 0);
 
-  const formatPrice = (price: number) => {
+  const formatPrice = (price) => {
     return `₹${price.toLocaleString('en-IN')}`;
   };
 

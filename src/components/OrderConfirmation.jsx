@@ -2,28 +2,12 @@ import React from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useCart } from "../context/CartContext";
 
-interface OrderDetails {
-  items: any[];
-  total: number;
-  deliveryAddress: {
-    firstName: string;
-    lastName: string;
-    email: string;
-    phone: string;
-    doorNo: string;
-    streetName: string;
-    city: string;
-    state: string;
-    pincode: string;
-  };
-}
-
-const OrderConfirmation: React.FC = () => {
+const OrderConfirmation = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const { clearCart } = useCart();
   
-  const orderDetails = location.state?.orderDetails as OrderDetails;
+  const orderDetails = location.state?.orderDetails;
 
   React.useEffect(() => {
     // Clear the cart after successful order - only run once
@@ -92,13 +76,13 @@ const OrderConfirmation: React.FC = () => {
                     <p className="font-medium text-[#111827]">{item.name}</p>
                     <p className="text-[#6B7280] text-sm">Qty: {item.quantity}</p>
                   </div>
-                  <span className="font-semibold text-[#111827]">${(item.price * item.quantity).toFixed(2)}</span>
+                  <span className="font-semibold text-[#111827]">₹{(item.price * item.quantity).toLocaleString('en-IN')}</span>
                 </div>
               ))}
               <div className="border-t border-[#E5E7EB] pt-3">
                 <div className="flex justify-between">
                   <span className="text-lg font-bold text-[#111827]">Total</span>
-                  <span className="text-lg font-bold text-[#10B981]">${orderDetails.total.toFixed(2)}</span>
+                  <span className="text-lg font-bold text-[#10B981]">₹{orderDetails.total.toLocaleString('en-IN')}</span>
                 </div>
               </div>
             </div>

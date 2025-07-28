@@ -2,24 +2,14 @@ import React, { useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useCart } from "../context/CartContext";
 
-interface Product {
-  id: number;
-  name: string;
-  price: number;
-  image: string;
-  description: string;
-  category: string;
-  brand: string;
-}
-
-const BrandPage: React.FC = () => {
-  const { brandName } = useParams<{ brandName: string }>();
+const BrandPage = () => {
+  const { brandName } = useParams();
   const navigate = useNavigate();
   const { addToCart, cartCount } = useCart();
   const [searchTerm, setSearchTerm] = useState("");
 
   // Brand-specific product data
-  const brandProducts: { [key: string]: Product[] } = {
+  const brandProducts = {
     apple: [
       {
         id: 2,
@@ -171,7 +161,7 @@ const BrandPage: React.FC = () => {
     ]
   };
 
-  const brandInfo: { [key: string]: { name: string; logo: string; description: string; color: string } } = {
+  const brandInfo = {
     apple: {
       name: "Apple",
       logo: "/apple-logo.png",
@@ -224,11 +214,11 @@ const BrandPage: React.FC = () => {
     product.description.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
-  const formatPrice = (price: number) => {
+  const formatPrice = (price) => {
     return `₹${price.toLocaleString('en-IN')}`;
   };
 
-  const handleAddToCart = (product: Product) => {
+  const handleAddToCart = (product) => {
     addToCart(product);
   };
 

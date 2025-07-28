@@ -1,6 +1,6 @@
 # E-Commerce Website
 
-A modern, responsive e-commerce website built with React, TypeScript, and Tailwind CSS.
+A modern, responsive e-commerce website built with React, JavaScript (JSX), and Tailwind CSS.
 
 ## 🚀 Features
 
@@ -9,7 +9,7 @@ A modern, responsive e-commerce website built with React, TypeScript, and Tailwi
 - **Shopping Cart**: Add, remove, and manage cart items
 - **Responsive Design**: Works perfectly on all devices
 - **Modern UI**: Beautiful design with custom color palette
-- **TypeScript**: Full type safety and better development experience
+- **JavaScript (JSX)**: Clean and maintainable code structure
 
 ## 🎨 Color Palette
 
@@ -25,7 +25,7 @@ A modern, responsive e-commerce website built with React, TypeScript, and Tailwi
 
 ## 🛠️ Tech Stack
 
-- **Frontend**: React 18 with TypeScript
+- **Frontend**: React 18 with JavaScript (JSX)
 - **Styling**: Tailwind CSS (via CDN)
 - **Routing**: React Router DOM
 - **State Management**: React Context API
@@ -68,24 +68,31 @@ The `vercel.json` file ensures proper routing for the single-page application.
 ```
 src/
 ├── auth/                 # Authentication components
-│   ├── Login.tsx        # Login form
-│   └── Signup.tsx       # Signup form
+│   ├── Login.jsx        # Login form
+│   └── Signup.jsx       # Signup form
 ├── components/          # Main components
-│   ├── ProductList.tsx  # Product catalog
-│   └── Cart.tsx         # Shopping cart
+│   ├── ProductList.jsx  # Product catalog
+│   ├── ProductDetail.jsx # Product detail page
+│   ├── BrandPage.jsx    # Brand-specific pages
+│   ├── Cart.jsx         # Shopping cart
+│   ├── Checkout.jsx     # Checkout process
+│   └── OrderConfirmation.jsx # Order confirmation
 ├── context/            # React Context
-│   └── CartContext.tsx # Cart state management
-├── App.tsx             # Main app component
-└── index.tsx           # App entry point
+│   ├── CartContext.jsx # Cart state management
+│   └── ThemeContext.jsx # Theme state management
+├── App.jsx             # Main app component
+└── index.jsx           # App entry point
 ```
 
 ## 🎯 User Flow
 
 1. **Login/Signup** → User authentication
 2. **Product Catalog** → Browse and search products
-3. **Add to Cart** → Add products to shopping cart
-4. **Cart Management** → View, modify, or remove items
-5. **Checkout** → Complete purchase (coming soon)
+3. **Product Details** → View detailed product information
+4. **Add to Cart** → Add products to shopping cart
+5. **Cart Management** → View, modify, or remove items
+6. **Checkout** → Complete purchase with delivery details
+7. **Order Confirmation** → Order success page
 
 ## 🔧 Available Scripts
 
@@ -107,6 +114,7 @@ src/
 - Category filtering
 - Product images and descriptions
 - Add to cart functionality
+- Product detail pages with specifications
 
 ### Shopping Cart
 - Real-time cart updates
@@ -114,6 +122,12 @@ src/
 - Remove items
 - Order summary
 - Continue shopping
+
+### Checkout Process
+- Delivery address form
+- Order summary
+- Payment method selection
+- Order confirmation
 
 ## 🤝 Contributing
 

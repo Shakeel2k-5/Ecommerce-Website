@@ -1,23 +1,6 @@
-import React, { createContext, useContext, useState, ReactNode } from 'react';
+import React, { createContext, useContext, useState } from 'react';
 
-interface CartItem {
-  id: number;
-  name: string;
-  price: number;
-  image: string;
-  quantity: number;
-}
-
-interface CartContextType {
-  cartItems: CartItem[];
-  addToCart: (product: { id: number; name: string; price: number; image: string }) => void;
-  removeFromCart: (id: number) => void;
-  updateQuantity: (id: number, quantity: number) => void;
-  clearCart: () => void;
-  cartCount: number;
-}
-
-const CartContext = createContext<CartContextType | undefined>(undefined);
+const CartContext = createContext(undefined);
 
 export const useCart = () => {
   const context = useContext(CartContext);
@@ -27,14 +10,10 @@ export const useCart = () => {
   return context;
 };
 
-interface CartProviderProps {
-  children: ReactNode;
-}
+export const CartProvider = ({ children }) => {
+  const [cartItems, setCartItems] = useState([]);
 
-export const CartProvider: React.FC<CartProviderProps> = ({ children }) => {
-  const [cartItems, setCartItems] = useState<CartItem[]>([]);
-
-  const addToCart = (product: { id: number; name: string; price: number; image: string }) => {
+  const addToCart = (product) => {
     setCartItems(prevItems => {
       const existingItem = prevItems.find(item => item.id === product.id);
       if (existingItem) {
@@ -49,11 +28,11 @@ export const CartProvider: React.FC<CartProviderProps> = ({ children }) => {
     });
   };
 
-  const removeFromCart = (id: number) => {
+  const removeFromCart = (id) => {
     setCartItems(prevItems => prevItems.filter(item => item.id !== id));
   };
 
-  const updateQuantity = (id: number, quantity: number) => {
+  const updateQuantity = (id, quantity) => {
     if (quantity === 0) {
       removeFromCart(id);
     } else {
